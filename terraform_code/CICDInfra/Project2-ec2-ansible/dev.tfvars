@@ -4,4 +4,4 @@
     key_name               = "fqts-demo-key"
     project_name           = "project-2"
     env                    = "dev"
-    unique_ids             = ["jenkins-master","jenkins-build-slave"]
+    unique_ids             = ["ansible-control-node"]

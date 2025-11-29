@@ -1,0 +1,12 @@
+[jenkins-master]
+172.31.46.176
+[jenkins-master:vars]
+ansible_user=ec2-user
+ansible_ssh_private_key_file=/opt/key/fqts-demo-key.pem
+
+
+[jenkins-slave]
+172.31.43.67
+[jenkins-slave:vars]
+ansible_user=ec2-user
+ansible_ssh_private_key_file=/opt/key/fqts-demo-key.pem
