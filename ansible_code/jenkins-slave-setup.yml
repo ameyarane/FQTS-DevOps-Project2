@@ -54,5 +54,5 @@
  
     - name: Display Docker service status
       debug:
-      msg: "Docker service is {{ docker_status.stdout }}"
+        msg: "Docker service is {{ docker_status.stdout }}"
       tags: install_docker
