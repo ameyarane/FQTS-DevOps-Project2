@@ -56,3 +56,16 @@
       debug:
         msg: "Docker service is {{ docker_status.stdout }}"
       tags: install_docker
+
+    - name: Permission to docker sock 
+      file: 
+        path: /var/run/docker.sock
+        state: file 
+        mode: 0777
+      tags: install_docker
+    
+    - name: start docker on boot time 
+      service: 
+        name: docker 
+        enabled: yes
+      tags: install_docker
