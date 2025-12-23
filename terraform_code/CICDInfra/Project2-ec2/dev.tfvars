@@ -5,3 +5,4 @@
     project_name           = "project-2"
     env                    = "dev"
     unique_ids             = ["jenkins-master","jenkins-build-slave"]
+    iam_instance_profile   = "eks-admin-role"

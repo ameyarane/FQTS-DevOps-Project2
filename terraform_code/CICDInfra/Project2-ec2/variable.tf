@@ -46,3 +46,10 @@ variable "unique_ids" {
   type        = list
   default     = []
   }
+
+variable "iam_instance_profile" {
+  description = "iam_instance_profile"
+  type = string
+  default = ""
+  
+}

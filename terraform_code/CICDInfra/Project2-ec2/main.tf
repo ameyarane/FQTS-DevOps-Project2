@@ -7,5 +7,6 @@ module "myec2" {
     key_name               = var.key_name
     name = "${var.project_name}-${var.unique_ids[count.index]}"
     project_name = var.project_name
-    env = var.env    
+    env = var.env
+    iam_instance_profile   = var.iam_instance_profile    
 }
