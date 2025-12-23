@@ -1,0 +1,8 @@
+# Common Varibales
+env      = "dev"
+co_name  = "fqts"
+vpc_id   = "vpc-020cdb293828a27e7"
+
+# SG related varibales
+sg_name  = "eks-ssh-sg"
+

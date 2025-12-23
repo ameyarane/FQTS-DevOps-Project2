@@ -1,0 +1,20 @@
+# Common Varibales
+env      = "dev"
+co_name  = "fqts"
+vpc_id   = "vpc-020cdb293828a27e7"
+
+#  EKS related varibales
+
+eks_name        = "eks"
+node_group_name = "eks_worker"
+capacity_type   = "ON_DEMAND"
+disk_size       = "20"
+instance_type   = ["t2.medium"]
+ec2_ssh_key     = "fqts-demo-key"
+master_role_arn = "arn:aws:iam::949527796968:role/fqts-dev-eks-master-role"
+worker_role_arn = "arn:aws:iam::949527796968:role/fqts-dev-eks-worker-role"
+subnet_ids      = ["subnet-0445ad7f30dc49eb0","subnet-0ee3e27d41ca239d6"]
+sg_ids          = ["sg-0e7a5677cf539a795"]
+desired_size    = 2
+max_size        = 3
+min_size        = 1
