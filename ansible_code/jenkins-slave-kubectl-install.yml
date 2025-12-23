@@ -2,7 +2,16 @@
 - name: setup jenkins slave  
   hosts: jenkins-slave
   tasks:
-
+    
+    - name: Ensure bin directory exists
+      ansible.builtin.file:
+        path: /home/ec2-user/bin
+        state: directory
+        mode: '0755'
+        owner: ec2-user
+        group: ec2-user
+      tags: install_kubectl
+      
     - name: Download kubectl binary
       ansible.builtin.get_url:
         url: "https://dl.k8s.io/release/v1.27.4/bin/linux/amd64/kubectl"
