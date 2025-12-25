@@ -1,50 +1,51 @@
----
-- name:  install jenkins of amazon linux 
+- name: Install Jenkins on Ubuntu 22.04
   hosts: jenkins-master
   become: true
-  tasks: 
-    - name: install java 21 
-      yum: 
-        name: java-21-amazon-corretto
+
+  tasks:
+    - name: Install Java 17 (recommended for Jenkins)
+      ansible.builtin.apt:
+        name: openjdk-17-jdk
         state: present
-    
-    - name: add jensins repository 
-      get_url: 
-        url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
-        dest: /etc/yum.repos.d/jenkins.repo
-      
-    - name: import jensins gpg key
-      command: rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
-    
-    - name: install jenkins
-      yum: 
+        update_cache: yes
+
+    - name: Add Jenkins apt key
+      ansible.builtin.apt_key:
+        url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+        state: present
+
+    - name: Add Jenkins apt repository
+      ansible.builtin.apt_repository:
+        repo: 'deb https://pkg.jenkins.io/debian-stable binary/'
+        state: present
+
+    - name: Update apt cache after adding Jenkins repo
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install Jenkins
+      ansible.builtin.apt:
         name: jenkins
         state: present
 
-    - name: enable and jenkins service 
-      systemd: 
-        name: jenkins
-        enabled: yes 
-        state: started
-
-    - name: enable jenkins to start at boot time
-      service: 
+    - name: Enable and start Jenkins service
+      ansible.builtin.systemd:
         name: jenkins
         enabled: yes
+        state: started
 
-    - name: install git
-      yum: 
+    - name: Install git
+      ansible.builtin.apt:
         name: git
         state: present
       tags: install_git
 
-    - name: check git version
-      shell: git --version
-      tags: install_git
+    - name: Check git version
+      ansible.builtin.shell: git --version
       register: git_version
-    
-    - name: print git version
-      debug: 
+      tags: install_git
+
+    - name: Print git version
+      ansible.builtin.debug:
         msg: "{{ git_version.stdout }}"
       tags: install_git
-        
